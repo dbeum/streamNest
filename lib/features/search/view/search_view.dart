@@ -15,18 +15,28 @@ class _SearchViewState extends State<SearchView> {
         child: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.07),
-            Row(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.83,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(121, 158, 158, 158),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: TextField(),
+                    ),
                   ),
-                  child: Padding(padding: EdgeInsets.all(15)),
-                ),
-              ],
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.more_vert_rounded),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

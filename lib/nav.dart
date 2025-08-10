@@ -1,4 +1,3 @@
-import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_nest/features/home/view/home_view.dart';
@@ -28,14 +27,21 @@ class _NavState extends State<Nav> {
       body: Center(child: tabItems[_selectedIndex]),
       bottomNavigationBar: FlashyTabBar(
         selectedIndex: _selectedIndex,
+        height: 55,
         showElevation: true,
         onItemSelected: (index) => setState(() {
           _selectedIndex = index;
         }),
         items: [
-          FlashyTabBarItem(icon: Icon(Icons.event), title: Text('Home')),
-          FlashyTabBarItem(icon: Icon(Icons.search), title: Text('Search')),
-          FlashyTabBarItem(icon: Icon(Icons.person), title: Text('Profile')),
+          FlashyTabBarItem(
+            icon: Icon(Icons.home_filled),
+            title: Text('Home', style: TextStyle(fontSize: 15)),
+          ),
+          FlashyTabBarItem(
+            icon: Icon(Icons.search),
+            title: Text('Search', style: TextStyle(fontSize: 15)),
+          ),
+          //  FlashyTabBarItem(icon: Icon(Icons.person), title: Text('Profile')),
         ],
       ),
     );
