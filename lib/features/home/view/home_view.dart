@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 import 'package:stream_nest/features/home/model/like_model.dart';
+import 'package:stream_nest/features/home/model/pause_model.dart';
 import 'package:stream_nest/features/home/model/video_model.dart';
 import 'package:stream_nest/features/home/service/home_service.dart';
 import 'package:stream_nest/features/home/widget/video_player_widget.dart';
@@ -35,6 +36,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<LikeModel>(context);
+    final pauseProvider = Provider.of<pauseModel>(context);
     return Scaffold(
       body: FutureBuilder<List<VideoModel>>(
         future: _videoFuture,
@@ -59,53 +61,68 @@ class _HomeState extends State<Home> {
                   },
                   itemBuilder: (context, index) {
                     final video = videos[index];
-                    return Stack(
-                      children: [
-                        VideoPlayerWidget(
-                          url: video.videoUrl,
-                          isActive: index == currentIndex,
-                        ),
-                        Positioned(
-                          bottom: 20,
-                          left: 20,
-                          right: 20,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${video.userName}',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  shadows: [
-                                    Shadow(
-                                      blurRadius: 4,
-                                      color: Colors.black54,
-                                      offset: Offset(1, 1),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Text(
-                                '${video.title}',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-
-                                  shadows: [
-                                    Shadow(
-                                      blurRadius: 4,
-                                      color: Colors.black54,
-                                      offset: Offset(1, 1),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                    return GestureDetector(
+                      onTap: () {
+                        pauseProvider.togglepause();
+                      },
+                      child: Stack(
+                        children: [
+                          VideoPlayerWidget(
+                            url: video.videoUrl,
+                            isActive: index == currentIndex,
+                            isPaused: pauseProvider.ispaused,
                           ),
-                        ),
-                      ],
+
+                          if (pauseProvider.ispaused)
+                            Center(
+                              child: Icon(
+                                Icons.pause,
+                                color: Colors.white,
+                                size: 100,
+                              ),
+                            ),
+                          Positioned(
+                            bottom: 20,
+                            left: 20,
+                            right: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${video.userName}',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    shadows: [
+                                      Shadow(
+                                        blurRadius: 4,
+                                        color: Colors.black54,
+                                        offset: Offset(1, 1),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Text(
+                                  '${video.title}',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+
+                                    shadows: [
+                                      Shadow(
+                                        blurRadius: 4,
+                                        color: Colors.black54,
+                                        offset: Offset(1, 1),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
