@@ -13,6 +13,7 @@ dependencies:
   flashy_tab_bar2: ^0.0.10
   flutter:
     sdk: flutter
+  flutter_secure_storage: ^4.2.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
 
