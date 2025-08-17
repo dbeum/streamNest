@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:stream_nest/features/home/model/like_model.dart';
+import 'package:stream_nest/features/home/model/pause_model.dart';
 import 'package:stream_nest/features/home/model/video_model.dart';
 import 'package:stream_nest/features/home/view/home_view.dart';
 import 'package:stream_nest/nav.dart';
@@ -12,7 +13,10 @@ void main() async {
 
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => LikeModel())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => LikeModel()),
+        ChangeNotifierProvider(create: (_) => pauseModel()),
+      ],
       child: const MainApp(),
     ),
   );

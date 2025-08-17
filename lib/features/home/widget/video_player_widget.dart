@@ -4,9 +4,14 @@ import 'package:video_player/video_player.dart';
 class VideoPlayerWidget extends StatefulWidget {
   final String url;
   final bool isActive;
+  final bool isPaused;
 
-  const VideoPlayerWidget({required this.url, required this.isActive, Key? key})
-    : super(key: key);
+  const VideoPlayerWidget({
+    required this.url,
+    required this.isActive,
+    required this.isPaused,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<VideoPlayerWidget> createState() => _VideoPlayerWidgetState();
@@ -33,10 +38,21 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   void didUpdateWidget(VideoPlayerWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.isActive && !_controller.value.isPlaying) {
+
+    if (widget.isActive && !_controller.value.isPlaying && !widget.isPaused) {
       _controller.play();
-    } else if (!widget.isActive && _controller.value.isPlaying) {
+    }
+
+    if (!widget.isActive && _controller.value.isPlaying) {
       _controller.pause();
+    }
+
+    if (widget.isPaused && _controller.value.isPlaying) {
+      _controller.pause();
+    } else if (!widget.isPaused &&
+        !_controller.value.isPlaying &&
+        widget.isActive) {
+      _controller.play();
     }
   }
 
