@@ -6,6 +6,7 @@ import 'package:stream_nest/features/home/model/like_model.dart';
 import 'package:stream_nest/features/home/model/pause_model.dart';
 import 'package:stream_nest/features/home/model/video_model.dart';
 import 'package:stream_nest/features/home/view/home_view.dart';
+import 'package:stream_nest/features/login/view/login_view.dart';
 import 'package:stream_nest/nav.dart';
 
 void main() async {
@@ -44,7 +45,7 @@ class MainApp extends StatelessWidget {
         textTheme: TextTheme(bodyLarge: TextStyle(color: Colors.white)),
       ),
       themeMode: ThemeMode.system,
-      home: Nav(),
+      home: LoginView(),
       debugShowCheckedModeBanner: false,
     );
   }

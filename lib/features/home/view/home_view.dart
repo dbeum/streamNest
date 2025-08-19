@@ -151,7 +151,7 @@ class _HomeState extends State<Home> {
                           icon: provider.islike
                               ? Icon(
                                   Icons.favorite,
-                                  color: Colors.white,
+                                  color: Colors.red,
                                   size: 40,
                                 )
                               : Icon(
