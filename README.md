@@ -1,6 +1,6 @@
  About StreamNest
 
-StreamNest is a cutting-edge, cloud-native video platform built for creators who dare to innovate. In its public beta, StreamNest is redefining how videos are shared, experienced, and monetized—at scale.
+StreamNest is a cutting-edge, cloud-native video platform built for creators who dare to innovate. In its public beta, StreamNest is redefining how videos are shared and experienced.
 
  Key Features
 - **Fast Uploads**: Auto-optimized video processing with thumbnail generation and content analysis for smooth publishing.
